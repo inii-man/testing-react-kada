@@ -11,25 +11,25 @@ export const JsxOperation = () => {
   const a = 3;
   // Mendeklarasikan variabel konstan 'b' dengan nilai 6
   const b = 6;
-  
+
   // Mengembalikan elemen JSX (HTML-like syntax di dalam JavaScript)
   return (
     // Menggunakan tag <div> sebagai pembungkus (wrapper)
     <div>
       {/* Menggunakan kurung kurawal {} untuk mengeksekusi variabel 'a' (akan tampil 3) */}
-      {a} 
+      {a}
       {/* Menampilkan teks literal " + " */}
-      {' + '} 
+      {' + '}
       {/* Menggunakan kurung kurawal {} untuk mengeksekusi variabel 'b' (akan tampil 6) */}
-      {b} 
+      {b}
       {/* Menampilkan teks literal " = " */}
-      {' = '} 
+      {' = '}
       {/* Menggunakan kurung kurawal {} untuk mengeksekusi operasi matematika 'a+b' (akan tampil 9) */}
       {a + b}
-    {/* Menutup tag <div> */}
+      {/* Menutup tag <div> */}
     </div>
   );
-// Menutup blok fungsi JsxOperation
+  // Menutup blok fungsi JsxOperation
 }
 
 // =========================================================
@@ -47,15 +47,15 @@ export const JsxStyleAndClass = ({ name = "User" }) => {
       {/* Mengeksekusi variabel 'name' dari props di dalam kurung kurawal {} */}
       {name}
       {/* Menampilkan teks literal "Hello, ." */}
-      Hello, . 
+      Hello, .
       {/* Menggunakan tag <br /> untuk ganti baris. Di JSX, tag kosong HARUS ditutup (self-closing tag) */}
       <br />
       {/* Menampilkan teks literal "It is a pleasure to meet you." */}
       It is a pleasure to meet you.
-    {/* Menutup tag <div> */}
+      {/* Menutup tag <div> */}
     </div>
   );
-// Menutup blok fungsi JsxStyleAndClass
+  // Menutup blok fungsi JsxStyleAndClass
 }
 
 // =========================================================
@@ -67,23 +67,23 @@ export const JsxTopLevelElement = () => {
   // Mengembalikan elemen JSX
   return (
     // Menggunakan tag kosong <> (React.Fragment) karena JSX HANYA BOLEH mengembalikan 1 elemen utama (Single top-level element)
-    <> 
+    <>
       {/* Menuliskan komentar di dalam JSX harus dibungkus dengan kurung kurawal dan slash bintang */}
       {/* Menggunakan tag <div> untuk menampilkan teks "Hello" */}
       <div>Hello</div>
       {/* Menggunakan tag <div> untuk menampilkan teks "World" */}
       <div>World</div>
-      
+
       {/* Menggunakan tag <input>. Ini adalah contoh tag yang tidak memiliki isian (empty tag) */}
       {/* Di HTML biasa, kita bisa menulis <input>. Tapi di JSX, tag ini WAJIB ditutup dengan karakter slash '/' di akhir */}
       <input type="text" readOnly value="Example input" />
-      
+
       {/* Menggunakan tag <br /> untuk enter/baris baru. WAJIB ditutup karena tidak memiliki tag penutup terpisah */}
       <br />
-    {/* Menutup tag React.Fragment </> */}
+      {/* Menutup tag React.Fragment </> */}
     </>
   );
-// Menutup blok fungsi JsxTopLevelElement
+  // Menutup blok fungsi JsxTopLevelElement
 }
 
 // =========================================================
@@ -99,18 +99,18 @@ export default function JsxPlayground() {
     <div style={{ border: '1px solid #ccc', padding: '16px', marginBottom: '16px' }}>
       {/* Menampilkan judul menggunakan tag <h2> */}
       <h2>JSX Examples</h2>
-      
+
       {/* Memanggil komponen JsxOperation untuk dirender (Self-closing) */}
       <JsxOperation />
-      
+
       {/* Memanggil komponen JsxStyleAndClass dengan mengirimkan props 'name' bernilai "John " */}
-      <JsxStyleAndClass name="John " />
-      
+      <JsxStyleAndClass name="zep " />
+
       {/* Memanggil komponen JsxTopLevelElement untuk dirender (Self-closing) */}
       <JsxTopLevelElement />
-      
-    {/* Menutup container <div> */}
+
+      {/* Menutup container <div> */}
     </div>
   );
-// Menutup blok fungsi JsxPlayground
+  // Menutup blok fungsi JsxPlayground
 }
