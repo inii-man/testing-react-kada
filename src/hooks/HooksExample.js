@@ -16,22 +16,22 @@ export const StateHookExample = () => {
     <div>
       {/* Menampilkan teks yang berisi nilai dari state 'title' */}
       <p>Current Title: {title}</p>
-      
+
       {/* Tombol untuk mengubah state dengan memberikan nilai baru secara langsung */}
       <button onClick={() => setTitle("Hello")}>
         Set to "Hello"
-      {/* Menutup tag <button> */}
+        {/* Menutup tag <button> */}
       </button>
-      
+
       {/* Memberikan jarak antar tombol */}
       <span style={{ margin: '0 10px' }}></span>
-      
+
       {/* Tombol untuk mengubah state menggunakan callback yang menerima nilai 'current' sebelumnya */}
       <button onClick={() => setTitle((current) => current + " World")}>
         Append " World"
-      {/* Menutup tag <button> */}
+        {/* Menutup tag <button> */}
       </button>
-    {/* Menutup tag <div> */}
+      {/* Menutup tag <div> */}
     </div>
   );
   // Menutup blok fungsi StateHookExample
@@ -50,7 +50,7 @@ export const EffectHookExample = () => {
   useEffect(() => {
     // Menampilkan pesan ke console browser
     console.log(`The button has been clicked ${count} times.`);
-  // Dependencies array berisi 'count', artinya effect ini akan berjalan ulang jika 'count' berubah nilainya
+    // Dependencies array berisi 'count', artinya effect ini akan berjalan ulang jika 'count' berubah nilainya
   }, [count]);
 
   // Mengembalikan elemen JSX
@@ -62,9 +62,9 @@ export const EffectHookExample = () => {
       {/* Tombol untuk menambah state 'count' sebanyak 1 ketika diklik */}
       <button onClick={() => setCount(count + 1)}>
         Click here
-      {/* Menutup tag <button> */}
+        {/* Menutup tag <button> */}
       </button>
-    {/* Menutup tag <div> */}
+      {/* Menutup tag <div> */}
     </div>
   );
   // Menutup blok fungsi EffectHookExample
@@ -81,16 +81,16 @@ export const EffectCleanupExample = () => {
     const intervalId = setInterval(() => {
       // Memperbarui state 'seconds' dengan menambahkan 1 dari nilai sebelumnya (current)
       setSeconds((current) => current + 1);
-    // Mengatur interval waktu 1000 milidetik (1 detik)
+      // Mengatur interval waktu 1000 milidetik (1 detik)
     }, 1000);
 
     // Mengembalikan fungsi cleanup (akan dieksekusi sebelum komponen dirender ulang, atau ketika komponen dihapus/unmounted)
     return () => {
       // Membersihkan interval menggunakan intervalId yang sudah disimpan sebelumnya, mencegah kebocoran memori (memory leak)
       clearInterval(intervalId);
-    // Menutup fungsi cleanup
+      // Menutup fungsi cleanup
     };
-  // Dependencies array kosong [], artinya effect ini hanya dijalankan sekali ketika komponen pertama kali dimuat (mounted)
+    // Dependencies array kosong [], artinya effect ini hanya dijalankan sekali ketika komponen pertama kali dimuat (mounted)
   }, []);
 
   // Mengembalikan elemen JSX
@@ -99,7 +99,7 @@ export const EffectCleanupExample = () => {
     <div>
       {/* Menampilkan jumlah detik yang telah berjalan */}
       Timer running: {seconds} seconds
-    {/* Menutup tag <div> */}
+      {/* Menutup tag <div> */}
     </div>
   );
   // Menutup blok fungsi EffectCleanupExample
@@ -110,41 +110,72 @@ export const EffectCleanupExample = () => {
 // =========================================================
 
 // Membuat Function Component bernama UseMemoExample
+// export const UseMemoExample = () => {
+//   // Membuat state 'firstName' dengan nilai awal 'Cheolsu'
+//   const [firstName, setFirstName] = useState('Cheolsu');
+//   // Membuat state 'lastName' dengan nilai awal 'Kim'
+//   const [lastName, setLastName] = useState('Kim');
+
+//   // Menggunakan useMemo untuk mengingat (memoize) hasil perhitungan string. 
+//   // Perhitungan ini hanya dilakukan kembali JIKA firstName atau lastName mengalami perubahan.
+//   const fullName = useMemo(() => {
+//     // Menampilkan log di console untuk membuktikan kapan proses ini dihitung ulang
+//     console.log("Calculating fullName...");
+//     // Mengembalikan string gabungan dari firstName dan lastName
+//     return `${firstName} ${lastName}`;
+//   // Dependencies array berisi 'firstName' dan 'lastName'
+//   }, [firstName, lastName]);
+
+//   // Mengembalikan elemen JSX
+//   return (
+//     // Menggunakan tag <div> sebagai pembungkus
+//     <div>
+//       {/* Menampilkan fullName hasil memoization */}
+//       <p>Full Name: {fullName}</p>
+
+//       {/* Tombol untuk mengubah firstName yang akan memicu perhitungan ulang pada useMemo */}
+//       <button onClick={() => setFirstName('Minsu')}>Change First Name</button>
+
+//       {/* Memberikan jarak antar tombol */}
+//       <span style={{ margin: '0 10px' }}></span>
+
+//       {/* Tombol untuk mengubah lastName yang akan memicu perhitungan ulang pada useMemo */}
+//       <button onClick={() => setLastName('Lee')}>Change Last Name</button>
+//     {/* Menutup tag <div> */}
+//     </div>
+//   );
+//   // Menutup blok fungsi UseMemoExample
+// }
+
 export const UseMemoExample = () => {
-  // Membuat state 'firstName' dengan nilai awal 'Cheolsu'
   const [firstName, setFirstName] = useState('Cheolsu');
-  // Membuat state 'lastName' dengan nilai awal 'Kim'
   const [lastName, setLastName] = useState('Kim');
 
-  // Menggunakan useMemo untuk mengingat (memoize) hasil perhitungan string. 
-  // Perhitungan ini hanya dilakukan kembali JIKA firstName atau lastName mengalami perubahan.
+  // 1. Tambah state pengganggu ini untuk testing
+  const [count, setCount] = useState(0);
+
   const fullName = useMemo(() => {
-    // Menampilkan log di console untuk membuktikan kapan proses ini dihitung ulang
-    console.log("Calculating fullName...");
-    // Mengembalikan string gabungan dari firstName dan lastName
+    // Log ini akan muncul JIKA proses kalkulasi berjalan
+    console.log("🔥 [useMemo] Sedang menghitung ulang fullName...");
     return `${firstName} ${lastName}`;
-  // Dependencies array berisi 'firstName' dan 'lastName'
   }, [firstName, lastName]);
 
-  // Mengembalikan elemen JSX
   return (
-    // Menggunakan tag <div> sebagai pembungkus
     <div>
-      {/* Menampilkan fullName hasil memoization */}
       <p>Full Name: {fullName}</p>
-      
-      {/* Tombol untuk mengubah firstName yang akan memicu perhitungan ulang pada useMemo */}
+      <p>Counter (Gak nyambung): {count}</p>
+
       <button onClick={() => setFirstName('Minsu')}>Change First Name</button>
-      
-      {/* Memberikan jarak antar tombol */}
-      <span style={{ margin: '0 10px' }}></span>
-      
-      {/* Tombol untuk mengubah lastName yang akan memicu perhitungan ulang pada useMemo */}
+      <span style={{ margin: '0 5px' }}></span>
       <button onClick={() => setLastName('Lee')}>Change Last Name</button>
-    {/* Menutup tag <div> */}
+
+      <hr />
+      {/* 2. Tombol ini akan memaksa komponen untuk render ulang (re-render) */}
+      <button onClick={() => setCount(count + 1)}>
+        Tambah Counter (Re-render Komponen)
+      </button>
     </div>
   );
-  // Menutup blok fungsi UseMemoExample
 }
 
 // =========================================================
@@ -163,7 +194,7 @@ export const UseCallbackExample = () => {
   const getFullName = useCallback(() => {
     // Mengembalikan string gabungan dari firstName dan lastName
     return `${firstName} ${lastName}`;
-  // Dependencies array berisi 'firstName' dan 'lastName'
+    // Dependencies array berisi 'firstName' dan 'lastName'
   }, [firstName, lastName]);
 
   // Mengembalikan elemen JSX
@@ -172,10 +203,10 @@ export const UseCallbackExample = () => {
     <>
       {/* Memanggil fungsi getFullName() dan menampilkannya */}
       <div>Result from getFullName(): {getFullName()}</div>
-      
+
       {/* Tombol untuk mengubah firstName */}
       <button onClick={() => setFirstName('Minsu')}>Change First Name</button>
-    {/* Menutup React Fragment */}
+      {/* Menutup React Fragment */}
     </>
   );
   // Menutup blok fungsi UseCallbackExample
@@ -194,7 +225,7 @@ export const UseRefExample = () => {
   const onButtonClick = () => {
     // Mengakses elemen DOM input secara langsung menggunakan inputRef.current, lalu memanggil fungsi focus() agar kursor berpindah ke input tersebut
     inputRef.current.focus();
-  // Menutup fungsi onButtonClick
+    // Menutup fungsi onButtonClick
   }
 
   // Mengembalikan elemen JSX
@@ -203,13 +234,13 @@ export const UseRefExample = () => {
     <div>
       {/* Input bertipe text dan menempelkan 'inputRef' ke atribut 'ref' agar bisa diakses langsung oleh React */}
       <input ref={inputRef} type="text" placeholder="Click button to focus me" />
-      
+
       {/* Tombol yang jika diklik akan memanggil onButtonClick yang kemudian memfokuskan kursor ke input */}
       <button onClick={onButtonClick}>
         Input as focus
-      {/* Menutup tag <button> */}
+        {/* Menutup tag <button> */}
       </button>
-    {/* Menutup tag <div> */}
+      {/* Menutup tag <div> */}
     </div>
   );
   // Menutup blok fungsi UseRefExample
@@ -230,17 +261,17 @@ function useMyStatus() {
     const timeout = setTimeout(() => {
       // Mengubah status menjadi 'Online' setelah 2 detik
       setStatus('Online');
-    // Waktu tunggu 2000 milidetik (2 detik)
+      // Waktu tunggu 2000 milidetik (2 detik)
     }, 2000);
 
     // Fungsi cleanup untuk membatalkan timer jika komponen dihapus sebelum 2 detik berlalu
     return () => clearTimeout(timeout);
-  // Dependencies array kosong [], berjalan sekali saat komponen dimuat
+    // Dependencies array kosong [], berjalan sekali saat komponen dimuat
   }, []);
 
   // Custom Hook harus mengembalikan nilai (dalam hal ini mengembalikan state status)
   return status;
-// Menutup fungsi useMyStatus
+  // Menutup fungsi useMyStatus
 }
 
 // Membuat Function Component bernama CustomHookExample untuk memakai Custom Hook yang sudah dibuat
@@ -254,7 +285,7 @@ export const CustomHookExample = () => {
     <div>
       {/* Menampilkan status yang didapat dari Custom Hook */}
       <p>Current Status (changes to Online in 2s): {currentStatus}</p>
-    {/* Menutup tag <div> */}
+      {/* Menutup tag <div> */}
     </div>
   );
   // Menutup blok fungsi CustomHookExample
@@ -282,7 +313,7 @@ export default function HooksPlayground() {
       <h3>2. Effect Hook (useEffect)</h3>
       {/* Memanggil komponen EffectHookExample */}
       <EffectHookExample />
-      
+
       {/* Menampilkan subjudul untuk Effect Hook dengan Cleanup */}
       <h4>Effect Hook with Cleanup (Timer)</h4>
       {/* Memanggil komponen EffectCleanupExample */}
@@ -308,7 +339,7 @@ export default function HooksPlayground() {
       {/* Memanggil komponen CustomHookExample */}
       <CustomHookExample />
 
-    {/* Menutup container <div> */}
+      {/* Menutup container <div> */}
     </div>
   );
   // Menutup blok fungsi HooksPlayground

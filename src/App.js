@@ -7,6 +7,7 @@ import ComponentPlayground from './jsx-and-components/ComponentExample';
 import PropsAndStatePlayground from './props-and-state/PropsAndStateExample';
 import EventHandlingPlayground from './event-handling/EventHandlingExample';
 import HooksPlayground from './hooks/HooksExample';
+import ComprehensivePracticePlayground from './comprehensive-practice/TodoExample';
 
 function App() {
   return (
@@ -40,6 +41,11 @@ function App() {
         {/* Menampilkan HooksPlayground */}
         <div style={{ backgroundColor: 'white', color: 'black', margin: '20px', padding: '10px', borderRadius: '8px', textAlign: 'left' }}>
           <HooksPlayground />
+        </div>
+
+        {/* Menampilkan ComprehensivePracticePlayground */}
+        <div style={{ backgroundColor: 'white', color: 'black', margin: '20px', padding: '10px', borderRadius: '8px', textAlign: 'left' }}>
+          <ComprehensivePracticePlayground />
         </div>
       </header>
     </div>
